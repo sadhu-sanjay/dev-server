@@ -1,0 +1,26 @@
+{
+  "name": "dev-server",
+  "version": "1.0.0",
+  "description": "All my Developemnts related Api's goes here. all these functions are deployed in an aws instance",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "npm run test",
+    "dev": "node --watch .",
+    "deploy": "rsync -avz --exclude node_modules --exclude .git '-e ssh -i ~/keys/aws-test-server.pem' . ubuntu@3.7.72.9:/var/www/portfolio && ssh -i ~/keys/aws-test-server.pem ubuntu@3.7.72.9 'sudo systemctl restart nginx'"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "keywords": [
+    "nodejs",
+    "api-developement",
+    "go",
+    "rust"
+  ],
+  "author": "https://twitter.com/sanjaygoswmai60",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.18.1",
+    "openai": "^4.29.2"
+  }
+}
