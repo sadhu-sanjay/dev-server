@@ -7,23 +7,25 @@ var connection = mysql.createConnection({
     database: 'airtable-maps'
 })
 
+connection.connect(function(err) {
+  if (err) {
+      console.error('Error connecting to database: ' + err.stack);
+      return;
+  }
+  console.log('Connected to database as ID ' + connection.threadId);
+});
 
 export async function runQuery(query) {
 
   return new Promise((resolve, reject) => {
 
-    connection.connect(function (err) {
-      if (err) return reject(err.code);
-
       connection.query(query, function (err1, result) {
         if (err1) return reject(err1.sqlMessage);
-
         const data = result.map((row) => {
-          return { ...row }; 
+          return { ...row };
         });
         return resolve(data);
       });
-    });
 
   });
 }
