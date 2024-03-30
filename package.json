@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npm run test",
     "dev": "node --watch .",
-    "deploy": "rsync -avz --exclude node_modules --exclude .git '-e ssh -i ~/keys/aws-test-server.pem' . ubuntu@3.7.72.9:/var/www/portfolio && ssh -i ~/keys/aws-test-server.pem ubuntu@3.7.72.9 'sudo systemctl restart nginx'"
+    "deploy": "rsync -avz --exclude node_modules --exclude .git '-e ssh -i ~/keys/aws-test-server.pem' ./ ubuntu@3.7.72.9:/var/www/dev-server/src && ssh -i ~/keys/aws-test-server.pem ubuntu@3.7.72.9 'sudo systemctl restart dev-server.service'"
   },
   "repository": {
     "type": "git"

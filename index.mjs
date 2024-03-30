@@ -1,9 +1,9 @@
 
 import { createServer } from 'node:http';
 import { createReadStream } from 'node:fs';
-import { runQuery } from './src/db/db.mjs';
+import { runQuery } from './db.mjs';
 
-const port = 8000
+const port = 9000
 const host = '127.0.0.1'
 
 const server = createServer(async (req, res) => {
@@ -45,10 +45,14 @@ const server = createServer(async (req, res) => {
       const query = "select * from Records limit 100";
       runQuery(query)
         .then((value) => {
-          console.log("Value Here", value);
+            console.log("Value Here", value);
+            res.writeHead(200, {'Content-Type': 'application/json'})
+            res.end(JSON.stringify(value));
         })
         .catch((rsn) => {
           console.log("reason", rsn);
+          res.writeHead(500, {'Content-Type': 'text/plain'})
+          res.end("Error In Running Query")
         })
     }
 
