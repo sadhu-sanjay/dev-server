@@ -8,11 +8,13 @@ var connection = mysql.createConnection({
 })
 
 connection.connect(function(err) {
+
   if (err) {
       console.error('Error connecting to database: ' + err.stack);
       return;
   }
   console.log('Connected to database as ID ' + connection.threadId);
+
 });
 
 export async function runQuery(query) {

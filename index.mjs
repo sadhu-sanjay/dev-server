@@ -2,9 +2,12 @@
 import { createServer } from 'node:http';
 import { createReadStream } from 'node:fs';
 import { runQuery } from './db.mjs';
+import express from 'express'
 
 const port = 9000
 const host = '127.0.0.1'
+
+const app = express()
 
 const server = createServer(async (req, res) => {
     
@@ -63,4 +66,7 @@ server.listen(port, host, () => {
     console.log("Port", port, "Host", host)
 })
 
+
+const app: express.Application = express();
+const server: http.Server = http.createServer(app);
 
